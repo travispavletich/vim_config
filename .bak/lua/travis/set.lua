@@ -5,8 +5,6 @@ vim.opt.expandtab = true
 
 vim.opt.number = true
 vim.opt.undofile = true
-vim.opt.undodir = "/home/travispavletich/.nvimundo"
+vim.opt.undodir = "/home/travis/.vimundo"
 
 vim.opt.incsearch = true
-
-vim.opt.fixeol = false

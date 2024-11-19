@@ -23,32 +23,36 @@ require("lazy").setup({
         }
     },
     {"EdenEast/nightfox.nvim", tag = "3.8.0"},
-    {"nvim-treesitter/nvim-treesitter", tag = "v0.9.1", build=":TSUpdate"},
+    -- {"nvim-treesitter/nvim-treesitter", tag = "v0.9.1", build=":TSUpdate"},
     {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {'neovim/nvim-lspconfig'},
+    {'williamboman/mason.nvim', tag = 'v1.8.3'},
+    {'williamboman/mason-lspconfig.nvim', tag = 'v1.25.0'},
+    {'neovim/nvim-lspconfig', tag = 'v0.1.7'},
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
     {'echasnovski/mini.comment'},
-})
+    {'pwntester/octo.nvim', commit = '15e1c949bdc6f77b1296977a6a7dde5d06c6c004'},
+    {'addcninblue/nvim-epoch-converter'},
+    {'f-person/git-blame.nvim'},
+    {'ruifm/gitlinker.nvim'},
+    {'rose-pine/neovim'},
+    {'folke/tokyonight.nvim'},
+    {"robitx/gp.nvim",
+     config = function()
+        local conf = {
+            providers = {
+                openai = {
+                    endpoint = "http://ai-gateway.optiver.us:54321/openai/chat/completions",
+                    secret = os.getenv("OPENAI_API_KEY"),
+		        },
+            }
+            -- For customization, refer to Install > Configuration in the Documentation/Readme
+        }
+        require("gp").setup(conf)
 
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
-
--- see :help lsp-zero-guide:integrate-with-mason-nvim
--- to learn how to use mason.nvim with lsp-zero
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    lsp_zero.default_setup,
-  },
-  ensure_installed = {'pyright'}
+        -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+    end,
+    }
 })
 
